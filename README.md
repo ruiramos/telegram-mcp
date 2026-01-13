@@ -9,11 +9,11 @@ Production-ready MCP server for the complete Telegram Bot API. **162 methods** w
 
 ## Highlights
 
-- **Complete API coverage** — All 162 Telegram Bot API methods
-- **Token efficient** — Meta mode reduces context by 99.7%
-- **Production hardened** — Circuit breaker, rate limiting, retries with backoff
-- **Observable** — Prometheus metrics, structured logging, health checks
-- **Type safe** — Full TypeScript with Zod validation
+- **Complete API coverage:** All 162 Telegram Bot API methods
+- **Token efficient:** Meta mode reduces context by 99.7%
+- **Production hardened:** Circuit breaker, rate limiting, retries with backoff
+- **Observable:** Prometheus metrics, structured logging, health checks
+- **Type safe:** Full TypeScript with Zod validation
 
 ## Installation
 
