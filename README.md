@@ -1,3 +1,5 @@
+<div align="center">
+
 # Telegram MCP Server
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org/)
@@ -6,6 +8,8 @@
 [![npm](https://img.shields.io/npm/v/@tonresistor/telegram-mcp.svg)](https://www.npmjs.com/package/@tonresistor/telegram-mcp)
 
 Production-ready MCP server for the complete Telegram Bot API. **162 methods** with token-optimized meta mode (~157 tokens vs ~55,000).
+
+</div>
 
 ## Highlights
 
