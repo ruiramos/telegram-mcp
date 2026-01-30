@@ -2015,10 +2015,30 @@ export const messageTools: Tool[] = [
 // TOOL HANDLER
 // =============================================================================
 
+/**
+ * Strip citation markers commonly added by LLMs (e.g., gpt-5-mini) from web search results.
+ * Patterns include: 【1】, 【1:2†source】, [1], etc.
+ */
+function stripCitationMarkers(text: string): string {
+  return text
+    // Match 【...】 with any content inside (numbers, colons, †, source text, etc.)
+    .replace(/【[^】]*】/g, "")
+    // Match [n] style citations where n is a number
+    .replace(/\[\d+\]/g, "")
+    // Clean up any double spaces left behind
+    .replace(/  +/g, " ")
+    .trim();
+}
+
 export async function handleMessageTool(
   name: string,
   args: Record<string, unknown>
 ) {
+  // Filter citation markers from sendMessage text
+  if (name === "sendMessage" && typeof args.text === "string") {
+    args = { ...args, text: stripCitationMarkers(args.text) };
+  }
+
   const response = await callTelegramAPI(name, args);
   return createToolResult(response);
 }
