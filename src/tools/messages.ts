@@ -159,7 +159,8 @@ export const messageTools: Tool[] = [
         },
         message_id: {
           type: "integer",
-          description: "Message identifier in the chat specified in from_chat_id.",
+          description:
+            "Message identifier in the chat specified in from_chat_id.",
         },
         video_start_timestamp: {
           type: "integer",
@@ -276,7 +277,8 @@ export const messageTools: Tool[] = [
         },
         message_id: {
           type: "integer",
-          description: "Message identifier in the chat specified in from_chat_id.",
+          description:
+            "Message identifier in the chat specified in from_chat_id.",
         },
         video_start_timestamp: {
           type: "integer",
@@ -333,8 +335,7 @@ export const messageTools: Tool[] = [
         },
         reply_parameters: {
           type: "object",
-          description:
-            "Description of the message to reply to.",
+          description: "Description of the message to reply to.",
         },
         reply_markup: {
           type: "object",
@@ -396,8 +397,7 @@ export const messageTools: Tool[] = [
         },
         remove_caption: {
           type: "boolean",
-          description:
-            "Pass True to copy the messages without their captions.",
+          description: "Pass True to copy the messages without their captions.",
         },
       },
       required: ["chat_id", "from_chat_id", "message_ids"],
@@ -459,11 +459,13 @@ export const messageTools: Tool[] = [
         },
         show_caption_above_media: {
           type: "boolean",
-          description: "Pass True, if the caption must be shown above the message media.",
+          description:
+            "Pass True, if the caption must be shown above the message media.",
         },
         has_spoiler: {
           type: "boolean",
-          description: "Pass True if the photo needs to be covered with a spoiler animation.",
+          description:
+            "Pass True if the photo needs to be covered with a spoiler animation.",
         },
         disable_notification: {
           type: "boolean",
@@ -541,7 +543,8 @@ export const messageTools: Tool[] = [
         },
         caption: {
           type: "string",
-          description: "Audio caption, 0-1024 characters after entities parsing.",
+          description:
+            "Audio caption, 0-1024 characters after entities parsing.",
         },
         parse_mode: {
           type: "string",
@@ -796,15 +799,18 @@ export const messageTools: Tool[] = [
         },
         show_caption_above_media: {
           type: "boolean",
-          description: "Pass True, if the caption must be shown above the message media.",
+          description:
+            "Pass True, if the caption must be shown above the message media.",
         },
         has_spoiler: {
           type: "boolean",
-          description: "Pass True if the video needs to be covered with a spoiler animation.",
+          description:
+            "Pass True if the video needs to be covered with a spoiler animation.",
         },
         supports_streaming: {
           type: "boolean",
-          description: "Pass True if the uploaded video is suitable for streaming.",
+          description:
+            "Pass True if the uploaded video is suitable for streaming.",
         },
         disable_notification: {
           type: "boolean",
@@ -917,7 +923,8 @@ export const messageTools: Tool[] = [
         },
         show_caption_above_media: {
           type: "boolean",
-          description: "Pass True, if the caption must be shown above the message media.",
+          description:
+            "Pass True, if the caption must be shown above the message media.",
         },
         has_spoiler: {
           type: "boolean",
@@ -1000,7 +1007,8 @@ export const messageTools: Tool[] = [
         },
         caption: {
           type: "string",
-          description: "Voice message caption, 0-1024 characters after entities parsing.",
+          description:
+            "Voice message caption, 0-1024 characters after entities parsing.",
         },
         parse_mode: {
           type: "string",
@@ -1198,7 +1206,8 @@ export const messageTools: Tool[] = [
         },
         caption: {
           type: "string",
-          description: "Media caption, 0-1024 characters after entities parsing.",
+          description:
+            "Media caption, 0-1024 characters after entities parsing.",
         },
         parse_mode: {
           type: "string",
@@ -1215,7 +1224,8 @@ export const messageTools: Tool[] = [
         },
         show_caption_above_media: {
           type: "boolean",
-          description: "Pass True, if the caption must be shown above the message media.",
+          description:
+            "Pass True, if the caption must be shown above the message media.",
         },
         disable_notification: {
           type: "boolean",
@@ -1476,7 +1486,8 @@ export const messageTools: Tool[] = [
         },
         google_place_type: {
           type: "string",
-          description: "Google Places type of the venue. (See supported types.)",
+          description:
+            "Google Places type of the venue. (See supported types.)",
         },
         disable_notification: {
           type: "boolean",
@@ -1655,12 +1666,12 @@ export const messageTools: Tool[] = [
         },
         is_anonymous: {
           type: "boolean",
-          description: "True, if the poll needs to be anonymous, defaults to True.",
+          description:
+            "True, if the poll needs to be anonymous, defaults to True.",
         },
         type: {
           type: "string",
-          description:
-            "Poll type, 'quiz' or 'regular', defaults to 'regular'.",
+          description: "Poll type, 'quiz' or 'regular', defaults to 'regular'.",
         },
         allows_multiple_answers: {
           type: "boolean",
@@ -2020,19 +2031,22 @@ export const messageTools: Tool[] = [
  * Patterns include: 【1】, 【1:2†source】, [1], etc.
  */
 function stripCitationMarkers(text: string): string {
-  return text
-    // Match 【...】 with any content inside (numbers, colons, †, source text, etc.)
-    .replace(/【[^】]*】/g, "")
-    // Match [n] style citations where n is a number
-    .replace(/\[\d+\]/g, "")
-    // Clean up any double spaces left behind
-    .replace(/  +/g, " ")
-    .trim();
+  return (
+    text
+      // Match 【...】 with any content inside (numbers, colons, †, source text, etc.)
+      .replace(/【[^】]*】/g, "")
+      .replace(/cite.*?/g, "")
+      // Match [n] style citations where n is a number
+      .replace(/\[\d+\]/g, "")
+      // Clean up any double spaces left behind
+      .replace(/  +/g, " ")
+      .trim()
+  );
 }
 
 export async function handleMessageTool(
   name: string,
-  args: Record<string, unknown>
+  args: Record<string, unknown>,
 ) {
   // Filter citation markers from sendMessage text
   if (name === "sendMessage" && typeof args.text === "string") {
